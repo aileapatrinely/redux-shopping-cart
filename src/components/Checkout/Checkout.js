@@ -1,22 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Checkout extends Component {
+  handleCheckout = () => {
+    this.props.dispatch({
+      type: 'CLEAR_CART',
+      payload: this.props.index,
+    });
+  };
 
-    handleCheckout = () => {
-        // TODO: Clear the cart and navigate to the product page
+  render() {
+    return (
+      <div>
+        <h2>Checkout</h2>
 
-    }
-
-    render() {
-        return (
-            <div>
-                <h2>Checkout</h2>
-                {/* TODO: Display items in the cart */}
-
-                <button onClick={this.handleCheckout}>Checkout</button>
-            </div>
-        )
-    }
+        {this.props.store.checkoutReducer.map((product, i) => {
+          return (
+            <li key={i}>
+              {product.price}
+              {'  '}
+              {product.name}
+            </li>
+          );
+        })}
+        <button onClick={this.handleCheckout}>Checkout</button>
+      </div>
+    );
+  }
 }
 
-export default Checkout;
+const mapStoreToProps = (store) => {
+  return { store };
+};
+
+export default connect(mapStoreToProps)(Checkout);
