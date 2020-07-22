@@ -9,20 +9,29 @@ class ProductForm extends Component {
     productToAdd: { name: '', price: 0 },
   };
 
-  handlePriceChange = (event) => {
-    this.setState({
-      productToAdd: {
-        ...this.state.productToAdd,
-        price: event.target.value,
-      },
-    });
-  };
+  // handlePriceChange = (event) => {
+  //   this.setState({
+  //     productToAdd: {
+  //       ...this.state.productToAdd,
+  //       price: event.target.value,
+  //     },
+  //   });
+  // };
 
-  handleNameChange = (event) => {
+  // handleNameChange = (event) => {
+  //   this.setState({
+  //     productToAdd: {
+  //       ...this.state.productToAdd,
+  //       name: event.target.value,
+  //     },
+  //   });
+  // };
+
+  handleAllChange = (fieldKey) => (event) => {
     this.setState({
       productToAdd: {
         ...this.state.productToAdd,
-        name: event.target.value,
+        [fieldKey]: event.target.value,
       },
     });
   };
@@ -40,12 +49,12 @@ class ProductForm extends Component {
     return (
       <form onSubmit={this.addProduct}>
         <input
-          onChange={this.handleNameChange}
+          onChange={this.handleAllChange('name')}
           type="text"
           placeholder="name"
         />
         <input
-          onChange={this.handlePriceChange}
+          onChange={this.handleAllChange('price')}
           type="text"
           placeholder="price"
         />
