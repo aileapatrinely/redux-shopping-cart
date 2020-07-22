@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import ProductListItem from '../ProductListItem/ProductListItem';
+import { connect } from 'react-redux';
 
 class ProductList extends Component {
-
-    render() {
-        return (
-            <div>
-                <ul>
-                   {this.props.products.map((product, i) => {
-                       return (
-                           <ProductListItem key={i} product={product} />
-                       );
-                   })} 
-                </ul>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <ul>
+          {this.props.store.productReducer.map((product, i) => {
+            return <ProductListItem key={i} product={product} />;
+          })}
+        </ul>
+      </div>
+    );
+  }
 }
 
-export default ProductList;
+const mapStoreToProps = (store) => {
+  return { store };
+};
+
+export default connect(mapStoreToProps)(ProductList);
