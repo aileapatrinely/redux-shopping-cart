@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 class Checkout extends Component {
   handleCheckout = () => {
     this.props.dispatch({
       type: 'CLEAR_CART',
     });
+    this.props.history.push('/');
   };
 
   handleDelete = (index) => (event) => {
@@ -30,7 +32,9 @@ class Checkout extends Component {
             </li>
           );
         })}
-        <button onClick={this.handleCheckout}>Checkout</button>
+        <button to="/" onClick={this.handleCheckout}>
+          Checkout
+        </button>
       </div>
     );
   }
