@@ -5,14 +5,13 @@ class Checkout extends Component {
   handleCheckout = () => {
     this.props.dispatch({
       type: 'CLEAR_CART',
-      payload: this.props.index,
     });
   };
 
-  handleDelete = () => {
+  handleDelete = (index) => (event) => {
     this.props.dispatch({
       type: 'REMOVE_FROM_CART',
-      payload: this.props.index,
+      payload: index,
     });
   };
 
@@ -27,7 +26,7 @@ class Checkout extends Component {
               {product.price}
               {'  '}
               {product.name}
-              <button onClick={this.handleDelete}>Remove</button>
+              <button onClick={this.handleDelete(index)}>Remove</button>
             </li>
           );
         })}
