@@ -19,6 +19,10 @@ const products = [
 const productReducer = (state = products, action) => {
   if (action.type === 'ADD_NEW_PRODUCT') {
     return [...state, action.payload];
+  } else if (action.type === 'REMOVE_FROM_STORE') {
+    return state.filter((item, index) => {
+      return action.payload !== index;
+    });
   }
   return state;
 };
@@ -29,6 +33,10 @@ const checkoutReducer = (state = [], action) => {
     return [...state, action.payload];
   } else if (action.type === 'CLEAR_CART') {
     return [];
+  } else if (action.type === 'REMOVE_FROM_CART') {
+    return state.filter((item, index) => {
+      return action.payload !== index;
+    });
   }
   return state;
 };

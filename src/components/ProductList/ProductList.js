@@ -7,8 +7,10 @@ class ProductList extends Component {
     return (
       <div>
         <ul>
-          {this.props.store.productReducer.map((product, i) => {
-            return <ProductListItem key={i} product={product} />;
+          {this.props.store.productReducer.map((product, index) => {
+            return (
+              <ProductListItem key={index} product={product} index={index} />
+            );
           })}
         </ul>
       </div>

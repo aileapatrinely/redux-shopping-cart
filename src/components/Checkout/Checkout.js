@@ -9,17 +9,25 @@ class Checkout extends Component {
     });
   };
 
+  handleDelete = () => {
+    this.props.dispatch({
+      type: 'REMOVE_FROM_CART',
+      payload: this.props.index,
+    });
+  };
+
   render() {
     return (
       <div>
         <h2>Checkout</h2>
 
-        {this.props.store.checkoutReducer.map((product, i) => {
+        {this.props.store.checkoutReducer.map((product, index) => {
           return (
-            <li key={i}>
+            <li key={index} index={index} product={product}>
               {product.price}
               {'  '}
               {product.name}
+              <button onClick={this.handleDelete}>Remove</button>
             </li>
           );
         })}

@@ -10,11 +10,19 @@ class ProductListItem extends Component {
     });
   };
 
+  removeProduct = () => {
+    this.props.dispatch({
+      type: 'REMOVE_FROM_STORE',
+      payload: this.props.index,
+    });
+  };
+
   render() {
     return (
       <li>
         {this.props.product.name}: {this.props.product.price}{' '}
         <button onClick={this.addProductToCart}>Add to Cart</button>
+        <button onClick={this.removeProduct}>Remove Product</button>
       </li>
     );
   }
